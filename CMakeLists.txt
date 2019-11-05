@@ -6,6 +6,8 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -pedantic -Wextra")
 add_library(lib3k
 	window.cpp
 	window.h
+	widget.cpp
+	widget.h
 	)
 target_link_libraries(lib3k -lX11)
 

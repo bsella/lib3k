@@ -9,7 +9,7 @@ static XEvent event;
 static Atom wmDelete;
 
 #include <iostream>
-Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool keyboard){
+Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool keyboard): Widget3k(w,h){
 	if(!windows_count){
 		display3k= XOpenDisplay(0);
 		screen3k= DefaultScreen(display3k);
@@ -38,8 +38,6 @@ Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool
 
 	XSetWMProtocols(display3k, win, &wmDelete, 1);
 
-	width=w;
-	height=h;
 	for(;;){
 		XNextEvent(display3k, &event);
 		if(event.type==MapNotify) break;
@@ -60,7 +58,7 @@ void Window3k::handle(){
 	switch(event.type){
 		case ClientMessage:
 			if(static_cast<Atom>(event.xclient.data.l[0])==wmDelete)
-				run= !close();
+				close();
 			break;
 		case ConfigureNotify:
 			if(event.xconfigure.width!=width || event.xconfigure.height!=height){
@@ -101,23 +99,6 @@ void Window3k::redraw(){
 	valid= true;
 }
 
-bool Window3k::close(){
-	return true;
-}
-
-void Window3k::resize(){
-	redraw();
-}
-
-void Window3k::on_mouse_enter(){
-}
-void Window3k::on_mouse_leave(){
-}
-void Window3k::on_mouse_move(){
-}
-void Window3k::on_mouse_press(int){
-}
-void Window3k::on_mouse_release(int){
-}
-void Window3k::on_mouse_wheel(int){
+void Window3k::close(){
+	run= false;
 }
