@@ -79,15 +79,26 @@ void Window3k::handle(){
 			on_mouse_move();
 			break;
 		case ButtonPress:
-			on_mouse_press(0);
+			if(event.xbutton.button < Button4)
+				on_mouse_press(event.xbutton.button);
+			else
+				on_mouse_wheel(event.xbutton.button-4);
 			break;
 		case ButtonRelease:
-			on_mouse_release(0);
+			if(event.xbutton.button < Button4)
+				on_mouse_release(event.xbutton.button);
 			break;
 		default:
 			std::cout << event.type << std::endl;
 			break;
 	}
+	if(!valid)
+		redraw();
+}
+
+void Window3k::redraw(){
+	XFlush(display3k);
+	valid= true;
 }
 
 bool Window3k::close(){
@@ -95,6 +106,7 @@ bool Window3k::close(){
 }
 
 void Window3k::resize(){
+	redraw();
 }
 
 void Window3k::on_mouse_enter(){
@@ -106,4 +118,6 @@ void Window3k::on_mouse_move(){
 void Window3k::on_mouse_press(int){
 }
 void Window3k::on_mouse_release(int){
+}
+void Window3k::on_mouse_wheel(int){
 }

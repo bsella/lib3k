@@ -8,6 +8,7 @@ class Window3k{
 	Window win;
 	GC gc;
 	int width,height;
+
 public:
 	inline int w(){return width;}
 	inline int h(){return height;}
@@ -16,14 +17,20 @@ public:
 	Window3k(unsigned int w, unsigned int h, const char*, bool mouse=false, bool keyboard=false);
 	virtual ~Window3k();
 	
+	bool valid=false;
 	void handle();
+	void redraw();
 
 	virtual bool close();
+
+protected:
 	virtual void resize();
 
 	virtual void on_mouse_enter();
 	virtual void on_mouse_leave();
 	virtual void on_mouse_move();
+
+	virtual void on_mouse_wheel(int);
 
 	virtual void on_mouse_press(int);
 	virtual void on_mouse_release(int);
