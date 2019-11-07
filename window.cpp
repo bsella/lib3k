@@ -42,6 +42,7 @@ Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool
 		XNextEvent(display3k, &event);
 		if(event.type==MapNotify) break;
 	}
+	validate();
 	XFlush(display3k);
 }
 
@@ -90,13 +91,10 @@ void Window3k::handle(){
 			std::cout << event.type << std::endl;
 			break;
 	}
-	if(!valid)
-		redraw();
-}
-
-void Window3k::redraw(){
-	XFlush(display3k);
-	valid= true;
+	if(!valid){
+		validate();
+		XFlush(display3k);
+	}
 }
 
 void Window3k::close(){
