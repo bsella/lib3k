@@ -7,6 +7,7 @@ extern int screen3k;
 
 class Widget3k{
 	bool cursor_inside= false;
+	unsigned int pressed_mask=0;
 public:
 	inline int w(){return width;}
 	inline int h(){return height;}
