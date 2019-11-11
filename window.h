@@ -10,4 +10,5 @@ public:
 	bool run= true;
 	
 	void handle();
+	void title(const char*);
 };
