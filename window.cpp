@@ -17,7 +17,8 @@ Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool
 	}
 	windows_count++;
 	unsigned long black= BlackPixel(display3k, screen3k);
-	win= XCreateSimpleWindow(display3k, DefaultRootWindow(display3k), 0,0, w,h, 0, black, black);
+	unsigned long white= WhitePixel(display3k, screen3k);
+	win= XCreateSimpleWindow(display3k, DefaultRootWindow(display3k), 0,0, w,h, 0, black, white);
 	//XSetStandardProperties(display3k,win, title, "Test", None,nullptr,0,nullptr);
 	
 	pos_x= pos_y= 0;
@@ -36,7 +37,6 @@ Window3k::Window3k(unsigned int w, unsigned int h, const char*, bool mouse, bool
  	XMapWindow(display3k, win);
 
 	gc=XCreateGC(display3k, win, 0,0);
-	XSetForeground(display3k, gc, WhitePixel(display3k, screen3k));
 
 	XSetWMProtocols(display3k, win, &wmDelete, 1);
 

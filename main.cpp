@@ -4,16 +4,17 @@
 #include <iostream>
 class TestWidget : public Widget3k{
 	void draw()override{
-		line(0,0,width,0);
-		line(0,0,0,height);
-		line(width,height,width,0);
-		line(width,height,0,height);
+		rect(0,0,width,height);
 	}
 	void on_mouse_enter(int, int){
 		std::cout << "enter" << std::endl;
 	}
 	void on_mouse_move(int x, int y){
-		line(0,0, x, y);
+		color(0xffffffff);
+		clear();
+		color(x+ y);
+		//line(0,0, x, y);
+		text(x, y, "test");
 	}
 	void on_mouse_leave(){
 		std::cout << "leave" << std::endl;

@@ -99,6 +99,31 @@ bool Widget3k::inside(int x, int y)const{
 	return y>pos_y && y<pos_y+height && x<pos_x+width && x>pos_x;
 }
 
-void Widget3k::line(int x1, int y1, int x2, int y2){
+void Widget3k::color(unsigned c)const{
+	XSetForeground(display3k, gc, c);
+}
+void Widget3k::clear()const{
+	XFillRectangle(display3k, win, gc, pos_x, pos_y, width, height);
+}
+void Widget3k::point(int x, int y)const{
+	XDrawPoint(display3k, win, gc, x, y);
+}
+void Widget3k::line(int x1, int y1, int x2, int y2)const{
 	XDrawLine(display3k, win, gc, pos_x+x1, pos_y+y1, pos_x+x2, pos_y+y2);
+}
+void Widget3k::rect(int x, int y, unsigned int w, unsigned int h)const{
+	XDrawRectangle(display3k, win, gc, pos_x+x, pos_y+y, w, h);
+}
+void Widget3k::rectf(int x, int y, unsigned int w, unsigned int h)const{
+	XFillRectangle(display3k, win, gc, pos_x+x, pos_y+y, w, h);
+}
+void Widget3k::arc(int x, int y, unsigned int w, unsigned int h, int angle1, int angle2)const{
+	XDrawArc(display3k, win, gc, pos_x+x, pos_y+y, w, h, angle1*64, angle2*64);
+}
+void Widget3k::arcf(int x, int y, unsigned int w, unsigned int h, int angle1, int angle2)const{
+	XFillArc(display3k, win, gc, pos_x+x, pos_y+y, w, h, angle1*64, angle2*64);
+}
+#include <cstring>
+void Widget3k::text(int x, int y, const char* text)const{
+	XDrawString(display3k, win, gc, pos_x+x, pos_y+y, text, strlen(text));
 }

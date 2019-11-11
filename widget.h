@@ -23,7 +23,15 @@ public:
 	void add_child(Widget3k*, int, int);
 	void remove_child(Widget3k*);
 
-	void line(int, int, int, int);
+	void color(unsigned)const;
+	void clear()const;
+	void point(int, int)const;
+	void line(int, int, int, int)const;
+	void rect(int, int, unsigned, unsigned)const;
+	void rectf(int, int, unsigned, unsigned)const;
+	void arc(int, int, unsigned, unsigned, int, int)const;
+	void arcf(int, int, unsigned, unsigned, int, int)const;
+	void text(int, int, const char*)const;
 
 protected:
 	Window win;
