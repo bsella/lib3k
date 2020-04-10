@@ -8,7 +8,6 @@ static unsigned int windows_count=0;
 static XEvent event;
 static Atom wmDelete;
 
-#include <iostream>
 Window3k::Window3k(unsigned int w, unsigned int h, const char*title, bool mouse, bool keyboard): Widget3k(w,h){
 	if(!windows_count){
 		display3k= XOpenDisplay(0);
@@ -19,7 +18,7 @@ Window3k::Window3k(unsigned int w, unsigned int h, const char*title, bool mouse,
 	unsigned long black= BlackPixel(display3k, screen3k);
 	unsigned long white= WhitePixel(display3k, screen3k);
 	win= XCreateSimpleWindow(display3k, DefaultRootWindow(display3k), 0,0, w,h, 0, black, white);
-	
+
 	XStoreName(display3k, win, title);
 	pos_x= pos_y= 0;
 	long masks= StructureNotifyMask;
@@ -55,6 +54,7 @@ Window3k::~Window3k(){
 		XCloseDisplay(display3k);
 }
 
+#include <iostream>
 void Window3k::handle(){
 	XNextEvent(display3k, &event);
 	switch(event.type){

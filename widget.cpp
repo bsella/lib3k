@@ -91,7 +91,6 @@ void Widget3k::remove_child(Widget3k* child){
 }
 
 void Widget3k::draw(){}
-
 void Widget3k::redraw(){
 	draw();
 	for(auto c: children)

@@ -5,14 +5,13 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -pedantic -Wextra")
 
 add_library(lib3k
 	window.cpp
-	window.h
 	widget.cpp
-	widget.h
 	)
 target_link_libraries(lib3k -lX11)
 
 add_executable(exe
-	main.cpp
+       main.cpp
 )
-
 target_link_libraries(exe lib3k)
+
+target_include_directories(lib3k PUBLIC include)

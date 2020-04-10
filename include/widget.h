@@ -11,15 +11,15 @@ class Widget3k{
 public:
 	inline int w(){return width;}
 	inline int h(){return height;}
-	
+
 	Widget3k(int x, int y, unsigned int w, unsigned int h);
 	Widget3k(unsigned int w, unsigned int h);
 	virtual ~Widget3k();
-	
+
 	virtual void draw();
-	void redraw();
+	virtual void redraw();
 	virtual void resize();
-	
+
 	void add_child(Widget3k*);
 	void add_child(Widget3k*, int, int);
 	void remove_child(Widget3k*);
